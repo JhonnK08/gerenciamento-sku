@@ -5,8 +5,20 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.15.0",
   "devDependencies": {
     "prisma": "^6.15.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0"
+  },
+  "scripts": {
+    "generate": "pnpm exec prisma generate",
+    "postinstall": "pnpm generate",
+    "migrate-dev": "pnpm exec prisma migrate dev"
+  },
+  "packageManager": "pnpm@10.15.0",
+  "publishConfig": {
+    "directory": "client",
+    "linkDirectory": true
   }
 }
