@@ -1,0 +1,9 @@
+{
+  "name": "@sku-management/monorepo",
+  "version": "1.0.0",
+  "description": "SKUs Management",
+  "keywords": [],
+  "author": "Jhonatan Konopp",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0"
+}

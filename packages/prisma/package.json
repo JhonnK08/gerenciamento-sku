@@ -1,0 +1,12 @@
+{
+  "name": "@sku-management/prisma",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "prisma": "^6.15.0"
+  }
+}
