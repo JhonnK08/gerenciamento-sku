@@ -15,16 +15,20 @@ export default tseslint.config(
       },
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: __dirname
+        tsconfigRootDir: __dirname,
       },
     },
   },
   {
     rules: {
-      'eqeqeq': 'error',
+      eqeqeq: 'error',
       'no-console': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'prettier/prettier': 'error'
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_' },
+      ],
+      'prettier/prettier': 'error',
+      'object-shorthand': ['error', 'always'],
     },
   },
 );
