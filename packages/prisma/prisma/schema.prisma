@@ -14,13 +14,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model SKU {
-  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-  sku                  String   @unique
+enum SkuStatus {
+  PRE_REGISTER
+  COMPLETED_REGISTER
+  ACTIVE
+  INACTIVE
+  CANCEL
+}
+
+model Sku {
+  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
+  sku                  String    @unique
   description          String?
   comercialDescription String?
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  status               SkuStatus @default(PRE_REGISTER)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
 
   @@map("SKU")
 }
