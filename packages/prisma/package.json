@@ -14,7 +14,8 @@
   "scripts": {
     "generate": "pnpm exec prisma generate",
     "postinstall": "pnpm generate",
-    "migrate-dev": "pnpm exec prisma migrate dev"
+    "push": "pnpm exec prisma db push",
+    "studio": "pnpm exec prisma studio"
   },
   "packageManager": "pnpm@10.15.0",
   "publishConfig": {
