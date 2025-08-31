@@ -3,15 +3,15 @@ import { CreateSkuDto } from './dto/create-sku.dto';
 import { UpdateSkuInfoDto } from './dto/update-sku-info.dto';
 import { UpdateSkuStatusDto } from './dto/update-sku-status.dto';
 import { Sku } from './entities/sku.entity';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../database/prisma.service';
 import { SkuStatus } from '@sku-management/prisma/client';
-import { parsePrismaStatus } from 'src/utils/status.util';
-import { parsePrismaSku } from 'src/utils/sku.util';
+import { parsePrismaStatus } from '../utils/status.util';
+import { parsePrismaSku } from '../utils/sku.util';
 import { SkuStatusPolicy } from './policies/sku-status.policy';
 
 @Injectable()
 export class SkuService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async create(createSkuDto: CreateSkuDto): Promise<Sku> {
     try {
@@ -116,6 +116,10 @@ export class SkuService {
       return parsePrismaSku(updatedSku);
     } catch (error) {
       console.log('Error on update sku status on prisma: ', error);
+
+      if (error instanceof Error && !!error.message.includes('Cannot change'))
+        throw error;
+
       throw new Error('Error on update data on database.');
     }
   }

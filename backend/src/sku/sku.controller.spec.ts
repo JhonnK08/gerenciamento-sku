@@ -1,7 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SkuController } from './sku.controller';
 import { skuMock, skuServiceMock } from '../test/__mocks__/sku.service.mock';
-import { createSkuDtoMock, updateSkuInfoDtoMock, updateSkuStatusDtoMock } from '../test/__mocks__/sku.dto.mock';
+import {
+  createSkuDtoMock,
+  updateSkuInfoDtoMock,
+  updateSkuStatusDtoMock,
+} from '../test/__mocks__/sku.dto.mock';
 
 describe('SkuController', () => {
   let controller: SkuController;
@@ -46,7 +50,10 @@ describe('SkuController', () => {
 
   describe('updateInfo', () => {
     it('should update info successfully', async () => {
-      const result = await controller.updateInfo(skuMock.id, updateSkuInfoDtoMock);
+      const result = await controller.updateInfo(
+        skuMock.id,
+        updateSkuInfoDtoMock,
+      );
       expect(result).toBeDefined();
       expect(result.id).toBe(skuMock.id);
       expect(result.comercialDescription).toBe(skuMock.comercialDescription);
@@ -55,10 +62,13 @@ describe('SkuController', () => {
 
   describe('updateStatus', () => {
     it('should update sku status successfully', async () => {
-      const result = await controller.updateStatus(skuMock.id, updateSkuStatusDtoMock);
+      const result = await controller.updateStatus(
+        skuMock.id,
+        updateSkuStatusDtoMock,
+      );
       expect(result).toBeDefined();
       expect(result.id).toBeDefined();
       expect(result.status).toBe(skuMock.status);
     });
-  }); 
+  });
 });

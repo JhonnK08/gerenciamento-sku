@@ -1,5 +1,5 @@
 import { Sku as PrismaSku } from '@sku-management/prisma/client';
-import { Sku } from 'src/sku/entities/sku.entity';
+import { Sku } from '../sku/entities/sku.entity';
 import { parsePrismaStatus } from './status.util';
 
 export function parsePrismaSku(sku: PrismaSku): Sku {

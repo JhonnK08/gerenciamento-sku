@@ -1,8 +1,8 @@
-import { CreateSkuDto } from "../../sku/dto/create-sku.dto";
-import { UpdateSkuInfoDto } from "../../sku/dto/update-sku-info.dto";
-import { UpdateSkuStatusDto } from "../../sku/dto/update-sku-status.dto";
-import { SkuStatus } from "../../sku/entities/sku.entity";
-import { skuMock } from "./sku.service.mock";
+import { CreateSkuDto } from '../../sku/dto/create-sku.dto';
+import { UpdateSkuInfoDto } from '../../sku/dto/update-sku-info.dto';
+import { UpdateSkuStatusDto } from '../../sku/dto/update-sku-status.dto';
+import { SkuStatus } from '../../sku/entities/sku.entity';
+import { skuMock } from './sku.service.mock';
 
 export const createSkuDtoMock: CreateSkuDto = {
   sku: skuMock.sku,
@@ -15,5 +15,5 @@ export const updateSkuInfoDtoMock: UpdateSkuInfoDto = {
 };
 
 export const updateSkuStatusDtoMock: UpdateSkuStatusDto = {
-  status: SkuStatus.CANCEL
-}
+  status: SkuStatus.CANCEL,
+};
