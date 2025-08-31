@@ -38,5 +38,5 @@ export const formSchema = z.object({
 export const defaultFormValues: FormValues = {
   description: '',
   sku: '',
-  comercialDescription: '',
+  comercialDescription: undefined,
 };
