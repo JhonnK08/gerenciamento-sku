@@ -5,17 +5,13 @@ import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
-import { formSchema } from './constants';
+import { defaultFormValues, formSchema } from './constants';
 import type { FormValues, SkuFormProps } from './types';
 
 export function SkuForm({ onSubmit }: Readonly<SkuFormProps>): ReactElement {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      comercialDescription: '',
-      description: '',
-      sku: '',
-    },
+    defaultValues: defaultFormValues,
   });
 
   return (
