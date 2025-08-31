@@ -10,8 +10,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 enum SkuStatus {
@@ -23,13 +24,13 @@ enum SkuStatus {
 }
 
 model Sku {
-  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
-  sku                  String    @unique
-  description          String?
-  comercialDescription String?
-  status               SkuStatus @default(PRE_REGISTER)
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  id                   String    @id @default(uuid()) @map("ID")
+  sku                  String    @unique @map("SKU") @db.VarChar(50)
+  description          String?   @map("DESCRIPTION") @db.VarChar(200)
+  comercialDescription String?   @map("COMERCIAL_DESCRIPTION") @db.VarChar(200)
+  status               SkuStatus @default(PRE_REGISTER) @map("STATUS")
+  createdAt            DateTime  @default(now()) @map("CREATED_AT")
+  updatedAt            DateTime  @updatedAt @map("UPDATED_AT")
 
   @@map("SKU")
 }

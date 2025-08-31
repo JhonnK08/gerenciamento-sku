@@ -13,6 +13,7 @@
   },
   "scripts": {
     "generate": "pnpm exec prisma generate",
+    "migrate-dev": "pnpm exec prisma migrate dev",
     "postinstall": "pnpm generate",
     "push": "pnpm exec prisma db push",
     "studio": "pnpm exec prisma studio"

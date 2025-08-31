@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS db;
+
+CREATE DATABASE IF NOT EXISTS db_shadow;
+
+-- cria usuário
+CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON db.* TO 'admin'@'%';
+GRANT ALL PRIVILEGES ON db_shadow.* TO 'admin'@'%';
+FLUSH PRIVILEGES;
