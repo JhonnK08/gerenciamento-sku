@@ -1,4 +1,4 @@
-import { FormDialog } from '@/components/FormDialog';
+import { Dialog } from '@/components/Dialog';
 import type { ReactElement } from 'react';
 
 interface SkuModalProps {
@@ -11,12 +11,8 @@ export function SkuModal({
   trigger,
 }: Readonly<SkuModalProps>): ReactElement {
   return (
-    <FormDialog
-      trigger={trigger}
-      title={'Add SKU'}
-      onCancel={() => console.log('cancel')}
-    >
+    <Dialog trigger={trigger} title={'Add SKU'}>
       {children}
-    </FormDialog>
+    </Dialog>
   );
 }

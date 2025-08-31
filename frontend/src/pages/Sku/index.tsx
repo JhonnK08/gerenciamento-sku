@@ -16,7 +16,7 @@ export function SkuPage(): ReactElement {
       <div className="flex w-full flex-1 flex-col gap-6">
         <div className="flex h-9">
           <SkuModal trigger={<Button className="ml-auto">Add SKU</Button>}>
-            <SkuForm />
+            <SkuForm onSubmit={(data) => console.log('data', data)} />
           </SkuModal>
         </div>
         <div className="flex flex-1">
