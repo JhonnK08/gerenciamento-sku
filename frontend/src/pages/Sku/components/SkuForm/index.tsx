@@ -5,51 +5,8 @@ import { Form } from '@/components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-
-interface FormValues {
-  sku: string;
-  description: string;
-  comercialDescription?: string;
-}
-
-interface SkuFormProps {
-  onSubmit: (data: FormValues) => void;
-}
-
-const formSchema = z.object({
-  sku: z
-    .string()
-    .min(10, {
-      error: 'SKU must be at least 10 characters.',
-    })
-    .max(50, {
-      error: 'SKU must be at most 50 characters.',
-    })
-    .nonempty({
-      error: 'SKU is required.',
-    }),
-  description: z
-    .string()
-    .min(10, {
-      error: 'Description must be at least 10 characters.',
-    })
-    .max(200, {
-      error: 'Description must be at most 200 characters.',
-    })
-    .nonempty({
-      error: 'Description is required.',
-    }),
-  comercialDescription: z
-    .string()
-    .min(10, {
-      error: 'Comercial description must be at least 10 characters.',
-    })
-    .max(200, {
-      error: 'Comercial description must be at most 200 characters.',
-    })
-    .optional(),
-});
+import { formSchema } from './constants';
+import type { FormValues, SkuFormProps } from './types';
 
 export function SkuForm({ onSubmit }: Readonly<SkuFormProps>): ReactElement {
   const form = useForm<FormValues>({
