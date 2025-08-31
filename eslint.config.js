@@ -13,7 +13,7 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   eslintPluginPrettierRecommended,
   {
-    ignores: ['eslint.config.js']
+    ignores: ['eslint.config.js'],
   },
   {
     languageOptions: {
