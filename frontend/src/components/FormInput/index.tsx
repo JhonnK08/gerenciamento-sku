@@ -15,6 +15,7 @@ interface FormInputProps {
   label: string;
   placeholder?: string;
   description?: ReactNode;
+  disabled?: boolean;
 }
 
 export function FormInput({
@@ -22,6 +23,7 @@ export function FormInput({
   label,
   name,
   placeholder,
+  disabled,
 }: Readonly<FormInputProps>): ReactElement {
   const { control } = useFormContext();
 
@@ -33,7 +35,7 @@ export function FormInput({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input {...field} placeholder={placeholder} disabled={disabled} />
           </FormControl>
           {description !== undefined && (
             <FormDescription>{description}</FormDescription>

@@ -15,6 +15,7 @@ interface FormTextAreaProps {
   label: string;
   placeholder: string;
   description?: ReactNode;
+  disabled?: boolean;
 }
 
 export function FormTextArea({
@@ -22,6 +23,7 @@ export function FormTextArea({
   name,
   placeholder,
   description,
+  disabled,
 }: Readonly<FormTextAreaProps>): ReactElement {
   const { control } = useFormContext();
 
@@ -34,9 +36,10 @@ export function FormTextArea({
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Textarea
+              {...field}
               placeholder={placeholder}
               className="resize-none"
-              {...field}
+              disabled={disabled}
             />
           </FormControl>
           {description !== undefined && (
