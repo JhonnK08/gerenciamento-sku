@@ -53,11 +53,11 @@ export function DialogFormFooter({
     <DialogFooter>
       <DialogClose asChild>
         <Button variant="outline" disabled={disabled}>
-          Cancel
+          Cancelar
         </Button>
       </DialogClose>
       <Button type="submit" disabled={disabled}>
-        Save changes
+        Salvar Alterações
       </Button>
     </DialogFooter>
   );
