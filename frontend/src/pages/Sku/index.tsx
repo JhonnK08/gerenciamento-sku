@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
 import { useState, type ReactElement } from 'react';
+import { toast } from 'sonner';
 import { SkuDataTable } from './components/SkuDataTable';
 import { SkuForm } from './components/SkuForm';
 import type { FormValues } from './components/SkuForm/types';
@@ -16,6 +17,10 @@ import { SkuModal } from './components/SkuModal';
 
 export function SkuPage(): ReactElement {
   const queryClient = useQueryClient();
+
+  function errorToast(): void {
+    toast('Houve um erro ao completar sua requisição.');
+  }
 
   const { data, isPending: isPendingData } = useQuery({
     queryKey: ['fetchAllSkus'],
@@ -26,7 +31,10 @@ export function SkuPage(): ReactElement {
     mutationFn: insertSku,
     onSuccess: (data) => {
       if (data) {
+        toast('SKU criado com sucesso!');
         void queryClient.invalidateQueries({ queryKey: ['fetchAllSkus'] });
+      } else {
+        errorToast();
       }
     },
   });
@@ -36,7 +44,10 @@ export function SkuPage(): ReactElement {
       mutationFn: updateStatusSku,
       onSuccess: (data) => {
         if (data) {
+          toast('Fluxo atualizado com sucesso!');
           void queryClient.invalidateQueries({ queryKey: ['fetchAllSkus'] });
+        } else {
+          errorToast();
         }
       },
     });
@@ -46,8 +57,11 @@ export function SkuPage(): ReactElement {
       mutationFn: updateInfoSku,
       onSuccess: (data) => {
         if (data) {
+          toast('SKU atualizado com sucesso!');
           void queryClient.invalidateQueries({ queryKey: ['fetchAllSkus'] });
           setEditSku(undefined);
+        } else {
+          errorToast();
         }
       },
     });
@@ -59,6 +73,7 @@ export function SkuPage(): ReactElement {
       return response.data;
     } catch (error) {
       console.error(error);
+      errorToast();
       return [];
     }
   }
