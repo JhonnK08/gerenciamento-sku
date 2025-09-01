@@ -24,7 +24,7 @@ Sistema para **gerenciamento de SKUs**, permitindo o cadastro e a alteração de
 - [**React Hook Form**](https://react-hook-form.com/)
 - [**TanStack Query**](https://tanstack.com/query/latest)  
 - [**TanStack Table**](https://tanstack.com/table/latest)  
-- **Jest** (testes)  
+- [**Vitest**](https://vitest.dev/) (testes)  
 
 ## 📐 Padrões e Estrutura  
 - **Monorepo** com [pnpm workspaces](https://pnpm.io/workspaces)  
@@ -93,5 +93,6 @@ pnpm -F backend test:int # Teste de Integração (Prisma)
 
 ### Frontend  
 ```bash
-pnpm -F frontend test
+pnpm -F frontend test     # Testes dos componentes
+pnpm -F frontend test:cov # Coverage de testes
 ```
