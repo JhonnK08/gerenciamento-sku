@@ -5,6 +5,7 @@ import {
   type ColumnDef,
 } from '@tanstack/react-table';
 import type { ReactElement, ReactNode } from 'react';
+import { LoadingSpinner } from '../LoadingSpinner';
 import {
   Table,
   TableBody,
@@ -17,11 +18,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  loading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  loading,
 }: Readonly<DataTableProps<TData, TValue>>): ReactElement {
   const table = useReactTable({
     data,
@@ -53,32 +56,38 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full overflow-hidden rounded-md border">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead
-                    key={header.id}
-                    style={{
-                      width: `${header.getSize()}px`,
-                    }}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>{renderBody()}</TableBody>
-      </Table>
+      {loading ? (
+        <div className="flex h-full w-full items-center justify-center">
+          <LoadingSpinner size={40} />
+        </div>
+      ) : (
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      style={{
+                        width: `${header.getSize()}px`,
+                      }}
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>{renderBody()}</TableBody>
+        </Table>
+      )}
     </div>
   );
 }
