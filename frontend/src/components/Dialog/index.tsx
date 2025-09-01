@@ -12,21 +12,25 @@ import type { ReactElement, ReactNode } from 'react';
 import { Button } from '../ui/button';
 
 interface DialogProps {
-  trigger: ReactElement;
   title: string;
   children: ReactNode;
   description?: string;
+  open?: boolean;
+  trigger?: ReactElement;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export function Dialog({
   children,
   description,
+  open,
   title,
   trigger,
+  onOpenChange,
 }: Readonly<DialogProps>): ReactElement {
   return (
-    <UIDialog>
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
+    <UIDialog open={open} onOpenChange={onOpenChange}>
+      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader className="mb-2">
           <DialogTitle>{title}</DialogTitle>
