@@ -6,32 +6,32 @@ export const formSchema = z.object({
   sku: z
     .string()
     .min(10, {
-      error: 'SKU must be at least 10 characters.',
+      error: 'SKU deve possuir no mínimo 10 caracteres',
     })
     .max(50, {
-      error: 'SKU must be at most 50 characters.',
+      error: 'SKU deve possuir no mínimo 50 caracteres.',
     })
     .nonempty({
-      error: 'SKU is required.',
+      error: 'SKU é obrigatório.',
     }),
   description: z
     .string()
     .min(10, {
-      error: 'Description must be at least 10 characters.',
+      error: 'Descrição deve possuir no mínimo 10 caracteres.',
     })
     .max(200, {
-      error: 'Description must be at most 200 characters.',
+      error: 'Deve possuir até 200 caracteres.',
     })
     .nonempty({
-      error: 'Description is required.',
+      error: 'Descrição é obrigatória.',
     }),
   comercialDescription: z
     .string()
     .min(10, {
-      error: 'Comercial description must be at least 10 characters.',
+      error: 'Deve possuir no mínimo 10 caracteres.',
     })
     .max(200, {
-      error: 'Comercial description must be at most 200 characters.',
+      error: 'Deve possuir até 200 caracteres.',
     })
     .optional(),
 });
