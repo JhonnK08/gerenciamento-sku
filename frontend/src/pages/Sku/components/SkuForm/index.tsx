@@ -14,6 +14,7 @@ import {
 import type { FormValues, SkuFormProps } from './types';
 
 export function SkuForm({
+  disabled,
   sku,
   onSubmit,
 }: Readonly<SkuFormProps>): ReactElement {
@@ -42,7 +43,7 @@ export function SkuForm({
               name="sku"
               label="SKU"
               placeholder="SKU"
-              disabled={disabledFields}
+              disabled={disabled || disabledFields}
             />
           </div>
           <div className="grid gap-3">
@@ -50,7 +51,7 @@ export function SkuForm({
               name="description"
               label="Descrição"
               placeholder="Descrição"
-              disabled={disabledFields}
+              disabled={disabled || disabledFields}
             />
           </div>
           <div className="grid gap-3">
@@ -58,10 +59,11 @@ export function SkuForm({
               name="comercialDescription"
               label="Descrição comercial"
               placeholder="Descrição comercial"
+              disabled={disabled}
             />
           </div>
         </div>
-        <DialogFormFooter onCancel={() => console.log('cancel')} />
+        <DialogFormFooter disabled={disabled} />
       </form>
     </Form>
   );

@@ -9,4 +9,5 @@ export interface FormValues {
 export interface SkuFormProps {
   sku?: Sku;
   onSubmit: (data: FormValues) => void;
+  disabled?: boolean;
 }
