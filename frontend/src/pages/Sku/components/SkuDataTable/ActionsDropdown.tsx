@@ -25,6 +25,7 @@ interface ActionsDropdownProps {
   status: SkuStatus;
   onEdit: (id: string) => void;
   onChangeStatus: (id: string, newStatus: SkuStatus) => void;
+  disabledActions?: boolean;
 }
 
 export function ActionsDropdown({
@@ -32,6 +33,7 @@ export function ActionsDropdown({
   status,
   onChangeStatus,
   onEdit,
+  disabledActions,
 }: Readonly<ActionsDropdownProps>): ReactNode {
   const options = useMemo<ActionOptions | null>(() => {
     switch (status) {
@@ -90,7 +92,11 @@ export function ActionsDropdown({
     <div className="flex justify-end">
       <DropdownMenu key={`actions-dropdown-${id}`}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
+          <Button
+            variant="ghost"
+            className="h-8 w-8 p-0"
+            disabled={disabledActions}
+          >
             <span className="sr-only">Open menu</span>
             <MoreHorizontal />
           </Button>

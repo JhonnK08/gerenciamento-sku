@@ -9,12 +9,16 @@ interface SkuDataTableProps {
   data: Sku[];
   onEditRow: (id: string) => void;
   onChangeStatus: (id: string, status: SkuStatus) => void;
+  loading?: boolean;
+  disabledActions?: boolean;
 }
 
 export function SkuDataTable({
   data,
   onChangeStatus,
   onEditRow,
+  disabledActions,
+  loading,
 }: Readonly<SkuDataTableProps>): ReactElement {
   const columns: ColumnDef<Sku>[] = [
     ...baseColumns,
@@ -29,6 +33,7 @@ export function SkuDataTable({
             status={row.original.status}
             onChangeStatus={onChangeStatus}
             onEdit={onEditRow}
+            disabledActions={disabledActions}
           />
         );
       },
@@ -38,5 +43,5 @@ export function SkuDataTable({
     },
   ];
 
-  return <DataTable columns={columns} data={data} />;
+  return <DataTable columns={columns} data={data} loading={loading} />;
 }
