@@ -16,6 +16,7 @@ export function LoadingSpinner({
         viewBox="0 0 24 24"
         width={size ?? 24}
         height={size ?? 24}
+        data-testid="loading-spinner"
       >
         <circle
           className="opacity-25"

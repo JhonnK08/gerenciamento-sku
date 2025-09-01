@@ -63,6 +63,6 @@ describe('DataTable', () => {
   it('should render LoadingSpinner when loading is true', () => {
     render(<DataTable columns={columns} data={[]} loading />);
 
-    expect(screen.getByRole('status')).toBeInTheDocument();
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
   });
 });

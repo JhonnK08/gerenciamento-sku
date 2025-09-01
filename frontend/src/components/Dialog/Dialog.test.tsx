@@ -7,7 +7,7 @@ import { Dialog, DialogFormFooter } from './index';
 describe('Dialog', () => {
   it('should render title and description successfully', () => {
     render(
-      <Dialog title="Meu Dialog" description="Descrição do dialog">
+      <Dialog title="Meu Dialog" description="Descrição do dialog" open>
         <div>Conteúdo do Dialog</div>
       </Dialog>,
     );
@@ -21,7 +21,11 @@ describe('Dialog', () => {
     const user = userEvent.setup();
 
     render(
-      <Dialog title="Dialog com Trigger" trigger={<Button>Open Dialog</Button>}>
+      <Dialog
+        title="Dialog com Trigger"
+        trigger={<Button>Open Dialog</Button>}
+        description="test"
+      >
         <div>Conteúdo do Dialog</div>
       </Dialog>,
     );
@@ -35,12 +39,20 @@ describe('Dialog', () => {
   });
 
   it('should render DialogFormFooter successfully', () => {
-    render(<DialogFormFooter />);
+    render(
+      <Dialog title="test" description="test" open>
+        <DialogFormFooter />
+      </Dialog>,
+    );
 
     expect(screen.getByText('Cancelar')).toBeInTheDocument();
     expect(screen.getByText('Salvar Alterações')).toBeInTheDocument();
 
-    render(<DialogFormFooter disabled />);
+    render(
+      <Dialog title="test" description="test" open>
+        <DialogFormFooter disabled />
+      </Dialog>,
+    );
     expect(screen.getAllByText('Cancelar')[1]).toBeDisabled();
     expect(screen.getAllByText('Salvar Alterações')[1]).toBeDisabled();
   });
