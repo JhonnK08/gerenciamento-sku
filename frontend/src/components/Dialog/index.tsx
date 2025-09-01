@@ -20,6 +20,10 @@ interface DialogProps {
   onOpenChange?: (open: boolean) => void;
 }
 
+interface DialogFormFooterProps {
+  disabled?: boolean;
+}
+
 export function Dialog({
   children,
   description,
@@ -43,18 +47,18 @@ export function Dialog({
 }
 
 export function DialogFormFooter({
-  onCancel,
-}: Readonly<{
-  onCancel: () => void;
-}>): ReactElement {
+  disabled,
+}: Readonly<DialogFormFooterProps>): ReactElement {
   return (
     <DialogFooter>
       <DialogClose asChild>
-        <Button variant="outline" onClick={onCancel}>
+        <Button variant="outline" disabled={disabled}>
           Cancel
         </Button>
       </DialogClose>
-      <Button type="submit">Save changes</Button>
+      <Button type="submit" disabled={disabled}>
+        Save changes
+      </Button>
     </DialogFooter>
   );
 }
