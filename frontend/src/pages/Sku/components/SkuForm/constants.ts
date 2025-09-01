@@ -1,3 +1,4 @@
+import type { Sku } from '@/api/types/sku';
 import z from 'zod';
 import type { FormValues } from './types';
 
@@ -39,4 +40,12 @@ export const defaultFormValues: FormValues = {
   description: '',
   sku: '',
   comercialDescription: undefined,
+};
+
+export const parseSkuToFormValues = (sku: Sku): FormValues => {
+  return {
+    description: sku.description ?? '',
+    sku: sku.sku,
+    comercialDescription: sku.comercialDescription ?? undefined,
+  };
 };

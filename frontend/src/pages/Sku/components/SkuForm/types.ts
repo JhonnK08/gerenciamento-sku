@@ -1,3 +1,5 @@
+import type { Sku } from '@/api/types/sku';
+
 export interface FormValues {
   sku: string;
   description: string;
@@ -5,5 +7,6 @@ export interface FormValues {
 }
 
 export interface SkuFormProps {
+  sku?: Sku;
   onSubmit: (data: FormValues) => void;
 }
