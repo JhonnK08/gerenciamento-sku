@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { SkuStatus } from '@sku-management/prisma/client';
+import { PrismaService } from '../database/prisma.service';
+import { parsePrismaSku } from '../utils/sku.util';
+import { parsePrismaStatus } from '../utils/status.util';
 import { CreateSkuDto } from './dto/create-sku.dto';
 import { UpdateSkuInfoDto } from './dto/update-sku-info.dto';
 import { UpdateSkuStatusDto } from './dto/update-sku-status.dto';
 import { Sku } from './entities/sku.entity';
-import { PrismaService } from '../database/prisma.service';
-import { SkuStatus } from '@sku-management/prisma/client';
-import { parsePrismaStatus } from '../utils/status.util';
-import { parsePrismaSku } from '../utils/sku.util';
 import { SkuStatusPolicy } from './policies/sku-status.policy';
 
 @Injectable()
@@ -68,10 +68,24 @@ export class SkuService {
     updateSkuInfoDto: UpdateSkuInfoDto,
   ): Promise<Sku> {
     try {
+      const sku = await this.prisma.sku.findUnique({
+        where: {
+          id,
+        }
+      });
+
+      if (!sku) {
+        throw new Error('SKU não encontrado!');
+      }
+
       const skuUpdated = await this.prisma.sku.update({
         data: {
           comercialDescription: updateSkuInfoDto.comercialDescription,
-          status: SkuStatus.PRE_REGISTER,
+          ...(sku.status === SkuStatus.COMPLETED_REGISTER) ? {
+            status: SkuStatus.PRE_REGISTER,
+          } : {
+            status: SkuStatus.COMPLETED_REGISTER
+          }
         },
         where: {
           id: id,
