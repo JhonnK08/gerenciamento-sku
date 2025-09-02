@@ -16,6 +16,14 @@ export class Sku {
 
 export const AllowedTransitionStatus = [
   SkuStatus.ACTIVE,
+  SkuStatus.CANCEL,
+  SkuStatus.INACTIVE,
+  SkuStatus.PRE_REGISTER,
+  SkuStatus.COMPLETED_REGISTER,
+] as const;
+
+export const AllowedCurrentTransitionStatus = [
+  SkuStatus.ACTIVE,
   SkuStatus.INACTIVE,
   SkuStatus.PRE_REGISTER,
   SkuStatus.COMPLETED_REGISTER,

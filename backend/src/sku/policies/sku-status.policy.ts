@@ -1,9 +1,9 @@
-import { SkuStatus, AllowedTransitionStatus } from '../entities/sku.entity';
+import { AllowedCurrentTransitionStatus, SkuStatus } from '../entities/sku.entity';
 
 export class SkuStatusPolicy {
   static canChangeStatus(current: SkuStatus, next: SkuStatus): boolean {
     const allowedTransitions: Record<
-      (typeof AllowedTransitionStatus)[number],
+      (typeof AllowedCurrentTransitionStatus)[number],
       SkuStatus[]
     > = {
       [SkuStatus.PRE_REGISTER]: [SkuStatus.CANCEL],
